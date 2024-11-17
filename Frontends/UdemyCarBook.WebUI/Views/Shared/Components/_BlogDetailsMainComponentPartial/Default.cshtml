@@ -1,0 +1,27 @@
+﻿@using UdemyCarBook.Dto.BlogDtos
+@model GetBlogById
+<div class="col-md-8 ftco-animate">
+
+    @if (Model != null && Model.Title != null)
+    {
+        <h2 class="mb-3">@Model.Title</h2>
+    }
+    else
+    {
+        <h2 class="mb-3">No Title Available</h2>
+    }
+    <p>@Model.Description</p>
+
+    @await Component.InvokeAsync("_BlogDetailCloudTagByBlogComponentPartial")
+
+    @await Component.InvokeAsync("_BlogDetailsAuthorAboutComponentPartial")
+
+    <div class="pt-5 mt-5">
+        <h3 class="mb-5">@ViewBag.commentCount Yorum</h3>
+
+        @await Component.InvokeAsync("_CommentListByBlogComponentPartial")
+
+        @*  @await Component.InvokeAsync("_AddCommentComponentPartial") *@
+        @await Html.PartialAsync("~/Views/Blog/AddComment.cshtml")
+    </div>
+</div>
